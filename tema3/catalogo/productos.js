@@ -1,3 +1,4 @@
+//creamos el array de productos
 export const productos = [
     {producto: "Libreta", stock: 50, precio: 2},
     {producto: "Carpeta", stock: 20, precio: 5},
