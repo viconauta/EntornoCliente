@@ -24,11 +24,18 @@ console.log(ordenada);
 
 
 // Mostrar las asignaturas junto con sus horas ordenadas por horas de menor a mayor. 
-
+const ordenHoras = [...asignaturas].sort((a, b) => a.horas - b.horas);
+console.log(ordenHoras);
 
 
 // Nombre asignatura con más horas. 
-
+const masHoras = Math.max(...asignaturas.map(a => a.horas));
+const nombreMasHoras = asignaturas.find(a => a.horas === masHoras);
+console.log(nombreMasHoras.nombre);
 
 
 // Crear un objeto similar, pero con las horas aumentadas un 10%.
+const aumento = asignaturas.map(a => ({
+    ...a, horas: a.horas * 1.10
+}));
+console.log(aumento);
