@@ -96,7 +96,7 @@ const menu = [
 
 ]
 
-const tienda = [
+export const tienda = [
   {
     "titulo": "Still got the blues",
     "artista": "Gary Moore",
