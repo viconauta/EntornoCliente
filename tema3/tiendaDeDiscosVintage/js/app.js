@@ -15,6 +15,7 @@ for(const disco of tienda) {
 
     //añadimos al imagen
     const img = document.createElement("img");
+    img.classList.add("img");
     img.src = disco.caratula;
     img.alt = disco.titulo;
     img.onerror = () => {

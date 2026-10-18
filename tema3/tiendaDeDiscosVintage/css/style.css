@@ -1,7 +1,41 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-.grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+main{
+    background-color: rgb(23, 23, 89);
+}
+h1 {
+    text-align: center;
+    padding: 2rem;
+    color: aliceblue;
+}
+#grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 1.5rem;
+}
+.tarjeta {
+    display: block;
+    width: 90%;
+    height: 70vh;
+    border-radius: 1rem;
+    background-color: aliceblue;
+    overflow: hidden;
+    margin: auto;
+}
+.cont-img{
+    max-width: fit-content;
+    
+}
+.img, .img-defecto{
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+.img-defecto{
+    opacity: 0.5;
 }
