@@ -24,10 +24,15 @@ for(const disco of tienda) {
     };
     imagen.append(img);
 
+    //contenedor de datos
+    const contDatos = document.createElement("div");
+    contDatos.classList.add("cont-datos");
+    tarjeta.append(contDatos);
+
     //creamos el contenedor de titulo y artista
     const dato = document.createElement("div");
     dato.classList.add("dato");
-    tarjeta.append(dato);
+    contDatos.append(dato);
 
     //metemos titulo y artista dentro de su contenedor
     const titulo = document.createElement("h2");
@@ -39,7 +44,7 @@ for(const disco of tienda) {
     //contenedor año y lugar
     const datoCreacion = document.createElement("div");
     datoCreacion.classList.add("datoCreacion");
-    tarjeta.append(datoCreacion);
+    contDatos.append(datoCreacion);
 
     //metemos pais y años en su contenedor
     const pais = document.createElement("p");
@@ -52,7 +57,7 @@ for(const disco of tienda) {
     //contenedor de copias y precio
     const contPrecio = document.createElement("div");
     contPrecio.classList.add("precio");
-    tarjeta.append(contPrecio);
+    contDatos.append(contPrecio);
 
     //añadimos copias vendidas y precio
     const copias = document.createElement("span");
