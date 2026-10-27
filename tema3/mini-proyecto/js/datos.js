@@ -1,6 +1,6 @@
 export const musica = [
     {
-        id: 1,
+        id: "RK001",
         nombre: "Bohemian Rhapsody",
         artista: "Queen",
         genero: "Rock",
@@ -8,7 +8,7 @@ export const musica = [
         puntuacion: 9.8
     },
     {
-        id: 2,
+        id: "PP001",
         nombre: "Billie Jean",
         artista: "Michael Jackson",
         genero: "Pop",
@@ -16,7 +16,7 @@ export const musica = [
         puntuacion: 9.5
     },
     {
-        id: 3,
+        id: "GR001",
         nombre: "Smells Like Teen Spirit",
         artista: "Nirvana",
         genero: "Grunge",
@@ -24,7 +24,7 @@ export const musica = [
         puntuacion: 9.2
     },
     {
-        id: 4,
+        id: "RK002",
         nombre: "Imagine",
         artista: "John Lennon",
         genero: "Rock",
@@ -32,7 +32,7 @@ export const musica = [
         puntuacion: 9.0
     },
     {
-        id: 5,
+        id: "PP002",
         nombre: "Blinding Lights",
         artista: "The Weeknd",
         genero: "Pop",
@@ -40,7 +40,7 @@ export const musica = [
         puntuacion: 8.7
     },
     {
-        id: 6,
+        id: "HH001",
         nombre: "Lose Yourself",
         artista: "Eminem",
         genero: "Hip Hop",
@@ -48,7 +48,7 @@ export const musica = [
         puntuacion: 9.6
     },
     {
-        id: 7,
+        id: "RB001",
         nombre: "One Dance",
         artista: "Drake",
         genero: "R&B",
@@ -56,7 +56,7 @@ export const musica = [
         puntuacion: 8.3
     },
     {
-        id: 8,
+        id: "PP003",
         nombre: "Shape of You",
         artista: "Ed Sheeran",
         genero: "Pop",
@@ -64,7 +64,7 @@ export const musica = [
         puntuacion: 8.9
     },
     {
-        id: 9,
+        id: "RK003",
         nombre: "Hotel California",
         artista: "Eagles",
         genero: "Rock",
@@ -72,7 +72,7 @@ export const musica = [
         puntuacion: 9.4
     },
     {
-        id: 10,
+        id: "SL001",
         nombre: "Rolling in the Deep",
         artista: "Adele",
         genero: "Soul",
