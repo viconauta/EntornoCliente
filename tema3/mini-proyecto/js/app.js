@@ -1,5 +1,5 @@
 import {musica} from "./datos.js";
-import {calcularPuntuacionPromedio, calcularPrecioPromedio, mostrarCatalogoHTML, ordenarPorPuntuacion, ordenarPorPrecio, existeCategoria, todosCumplenPrecioMinimo, filtrarPorCategoria, filtrarPorPuntuacionMinima} from "./funciones.js";
+import {calcularPuntuacionPromedio, calcularPrecioPromedio, mostrarCatalogoHTML, ordenarPorPuntuacion, ordenarPorPrecio, existeCategoria, todosCumplenPrecioMinimo, filtrarPorCategoria, filtrarPorPuntuacionMinima, buscarPorId, buscarPorNombre, obtenerPropiedades, objetoAEntradas} from "./funciones.js";
 
 //llamada a mostrar catalogo
 mostrarCatalogoHTML(musica);
@@ -42,3 +42,15 @@ filtrarPorCategoria(musica, categoria);
 //filtro premium
 const puntuacionMinima = 9;
 filtrarPorPuntuacionMinima(musica, puntuacionMinima);
+
+//busquedas
+const id = "PP001";
+buscarPorId(musica, id);
+
+const nombre = "Imagine";
+buscarPorNombre(musica, nombre);
+
+//llamada a propiedades
+obtenerPropiedades(musica[0]);
+
+objetoAEntradas(musica[0]);

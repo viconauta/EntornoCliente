@@ -37,7 +37,7 @@ export function calcularPuntuacionPromedio(array) {
 //ordenamiento
 export function ordenarPorPuntuacion(array) {
     const top = document.getElementById("top");
-    const puntuacionOrdenado = array.sort((a, b) => b.puntuacion - a.puntuacion).slice(0, 5);
+    const puntuacionOrdenado = [...array].sort((a, b) => b.puntuacion - a.puntuacion).slice(0, 5);
     const top5 = puntuacionOrdenado.map(a => `
         <div class="tarjeta">
             <div class="info">
@@ -52,7 +52,7 @@ export function ordenarPorPuntuacion(array) {
 
 export function ordenarPorPrecio(array) {
     const economicos = document.getElementById("economicos");
-    const ordenPrecio = array.sort((a, b) => a.precio - b.precio).slice(0, 5);
+    const ordenPrecio = [...array].sort((a, b) => a.precio - b.precio).slice(0, 5);
     const top5 = ordenPrecio.map(a => `
         <div class="tarjeta">
             <div class="info">
@@ -134,4 +134,76 @@ export function filtrarPorPuntuacionMinima(array, puntuacion) {
         </div>
         `).join("");
     filtroPuntuacion.innerHTML += html + copiaFiltro;
+}
+
+//busqueda
+function obtenerIndicePorId(array, id) {
+    let indice;
+    return indice = array.findIndex(a => a.id === id);
+}
+
+export function buscarPorId(array, id) {
+    const busqueda = document.getElementById("busqueda");
+    const buscarId = array.find(a => a.id === id);
+    const texto = `
+        <diV class="tarjeta"> 
+            <p class="negrita">Busqueda por ID "${id}":</p>
+    `;
+    const contenido = `
+            <p>Titulo: <strong>${buscarId.nombre} - ${buscarId.artista}</strong></p>
+            <p>Posicion en el catalogo: <strong>#${obtenerIndicePorId(array, id) + 1}</strong></p>
+            <p>Genero: ${buscarId.genero} | Precio: ${buscarId.precio}€ | Puntuacion: ${buscarId.puntuacion}/10</p>
+        </div>
+        `;
+    busqueda.innerHTML += texto + contenido;
+}
+
+export function buscarPorNombre(array, nombre) {
+    const busqueda = document.getElementById("busqueda");
+    const buscarNombre = array.find(a => a.nombre === nombre);
+    const contenido = `
+        <div class="tarjeta">
+            <p>Busqueda por titulo "${nombre}:</p>
+            <p>ID: ${buscarNombre.id} | Artista: ${buscarNombre.artista}</p>
+            <P>Genero: ${buscarNombre.genero} | Precio: ${buscarNombre.precio}€ | Puntuacion: ${buscarNombre.puntuacion}/10</p>
+        </div>
+    `;
+    busqueda.innerHTML += contenido;
+}
+
+//manipulacion de objetos
+export function obtenerPropiedades(objeto) {
+    const propiedades = document.getElementById("propiedades");
+    let texto = `
+        <div class="tarjeta">
+            <p>Propiedades de un objeto (Object.keys):</p>
+            <p>
+    `;
+    Object.keys(objeto).forEach(clave => {
+        texto += `
+            <b>${clave}</b>
+        `
+    });
+    texto += `
+            </p>
+        </div>
+    `;
+    propiedades.innerHTML += texto;
+}
+
+export function objetoAEntradas(objeto) {
+    const propiedades = document.getElementById("propiedades");
+    let texto = `
+        <div class="tarjeta">
+            <p>Objeto convertido a entradas (Object.entries):</p>
+    `;
+    for(const[clave, valor] of Object.entries(objeto)) {
+        texto += `
+            <p>${clave}: <strong>${valor}</strong></p>
+        `;
+    }
+    texto += `
+        </div>
+    `;
+    propiedades.innerHTML += texto;
 }
