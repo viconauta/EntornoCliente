@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: blue;
+    padding: 1rem;
+}
+
+main{
+    margin: auto;
+    background-color: aliceblue;
+    border-radius: 1rem;
+}
+#cabecera{
+    margin: auto;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid violet;
+    width: 95%;
+}
+
+section{
+    max-width: 80%;
+    margin: auto;
+    padding: .3rem;
+}
+
+h2{
+    margin: auto;
+    padding: .2rem;
+    border-bottom: 1px solid violet;
+    width: 95%;
+}
+
+.tarjeta, .tarjeta-analisis{
+    margin: auto;
+    padding: .5rem;
+}
+
+.info, .tarjeta-analisis{
+    margin: auto;
+    padding: .5rem;
+    background-color: rgb(173, 236, 255);
+    border-radius: 1rem;
+    border-left: 3px solid blue;
+    background: radial-gradient(ellipse, aliceblue, blueviolet);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+                  0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: 3s;
+}
+
+.info:hover, .tarjeta-analisis:hover{
+    transform: scale(1.05);
+}

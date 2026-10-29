@@ -9,7 +9,7 @@ export function mostrarCatalogoHTML(array) {
                 <p>Precio: ${a.precio} / Puntuacion: ${a.puntuacion}/10</p>
             </div>
         </div>
-        `).join("");
+        `).join(" ");
     tarjeta.innerHTML += contenido;
 }
 
