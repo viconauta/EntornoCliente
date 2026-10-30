@@ -11,7 +11,7 @@ calcularPrecioPromedio(musica);
 calcularPuntuacionPromedio(musica);
 
 //total de canciones
-const tarjeta = document.querySelector(".tarjeta-analisis");
+const tarjeta = document.querySelector(".info-analisis");
 const totalCanciones = document.createElement("p");
 totalCanciones.textContent = `Total de canciones: ${musica.length}`;
 tarjeta.append(totalCanciones);

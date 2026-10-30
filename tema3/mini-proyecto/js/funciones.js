@@ -15,7 +15,7 @@ export function mostrarCatalogoHTML(array) {
 
 //calculos
 export function calcularPrecioPromedio(array) {
-    const analisis = document.querySelector(".tarjeta-analisis");
+    const analisis = document.querySelector(".info-analisis");
     let suma = 0;
     array.forEach(element => {
         suma += element.precio
@@ -25,7 +25,7 @@ export function calcularPrecioPromedio(array) {
 }
 
 export function calcularPuntuacionPromedio(array) {
-    const analisis = document.querySelector(".tarjeta-analisis");
+    const analisis = document.querySelector(".info-analisis");
     let suma = 0;
     array.forEach(element => {
         suma += element.puntuacion;
@@ -67,15 +67,15 @@ export function ordenarPorPrecio(array) {
 
 //verificacion
 export function existeCategoria(array, categoria) {
-    const verificaciones = document.getElementById("verificaciones");
-    let contenido;
+    const verificaciones = document.querySelector(".info-verificacion");
+    let contenido = "";
     const existe = array.some(a => a.genero === categoria);
     if(existe) {
-        contenido = `
+        contenido += `
             <p>¿Hay canciones de ${categoria}? Si</p>
             `;
     } else {
-        contenido = `
+        contenido += `
             <p>¿Hay canciones de ${categoria}? No</p>
             `;
     }
@@ -83,8 +83,8 @@ export function existeCategoria(array, categoria) {
 }
 
 export function todosCumplenPrecioMinimo(array, precio) {
-    const verificaciones = document.getElementById("verificaciones");
-    let contenido;
+    const verificaciones = document.querySelector(".info-verificacion");
+    let contenido = "";
     const todos = array.every(a => a.precio > precio);
     if(todos) {
         contenido = `
@@ -111,8 +111,10 @@ export function filtrarPorCategoria(array, categoria) {
             <span>Encontrado: <b>${encontrados}</b></span>
         </div>`;
     const copiaFiltro = filtrado.map(a => `
-        <div class="tarjeta">
-            <p>${a.nombre} - ${a.artista} - ${a.precio}€ - (${a.puntuacion}/10)</p>
+        <div class="tarjeta">    
+            <div class="info">
+                <p>${a.nombre} - ${a.artista} - ${a.precio}€ - (${a.puntuacion}/10)</p>
+            </div>
         </div>
         `).join("");
     filtroCategoria.innerHTML += texto + copiaFiltro;
@@ -128,9 +130,11 @@ export function filtrarPorPuntuacionMinima(array, puntuacion) {
         </div>
         `;
     const copiaFiltro = filtro.map(a => `
-        <div>
-            <p>${a.nombre} | ${a.artista}</p>
-            <p>${a.genero} | <strong>${a.puntuacion}/10</strong> | ${a.precio}€</p>
+        <div class="tarjeta">    
+            <div class="info">
+                <p>${a.nombre} | ${a.artista}</p>
+                <p>${a.genero} | <strong>${a.puntuacion}/10</strong> | ${a.precio}€</p>
+            </div>
         </div>
         `).join("");
     filtroPuntuacion.innerHTML += html + copiaFiltro;
@@ -146,13 +150,15 @@ export function buscarPorId(array, id) {
     const busqueda = document.getElementById("busqueda");
     const buscarId = array.find(a => a.id === id);
     const texto = `
-        <diV class="tarjeta"> 
-            <p class="negrita">Busqueda por ID "${id}":</p>
+        <div class="tarjeta">
+            <diV class="info"> 
+                <p class="negrita">Busqueda por ID "${id}":</p>
     `;
     const contenido = `
-            <p>Titulo: <strong>${buscarId.nombre} - ${buscarId.artista}</strong></p>
-            <p>Posicion en el catalogo: <strong>#${obtenerIndicePorId(array, id) + 1}</strong></p>
-            <p>Genero: ${buscarId.genero} | Precio: ${buscarId.precio}€ | Puntuacion: ${buscarId.puntuacion}/10</p>
+                <p>Titulo: <strong>${buscarId.nombre} - ${buscarId.artista}</strong></p>
+                <p>Posicion en el catalogo: <strong>#${obtenerIndicePorId(array, id) + 1}</strong></p>
+                <p>Genero: ${buscarId.genero} | Precio: ${buscarId.precio}€ | Puntuacion: ${buscarId.puntuacion}/10</p>
+            </div>
         </div>
         `;
     busqueda.innerHTML += texto + contenido;
@@ -163,9 +169,11 @@ export function buscarPorNombre(array, nombre) {
     const buscarNombre = array.find(a => a.nombre === nombre);
     const contenido = `
         <div class="tarjeta">
-            <p>Busqueda por titulo "${nombre}:</p>
-            <p>ID: ${buscarNombre.id} | Artista: ${buscarNombre.artista}</p>
-            <P>Genero: ${buscarNombre.genero} | Precio: ${buscarNombre.precio}€ | Puntuacion: ${buscarNombre.puntuacion}/10</p>
+            <div class="info">
+                <p>Busqueda por titulo "${nombre}:</p>
+                <p>ID: ${buscarNombre.id} | Artista: ${buscarNombre.artista}</p>
+                <P>Genero: ${buscarNombre.genero} | Precio: ${buscarNombre.precio}€ | Puntuacion: ${buscarNombre.puntuacion}/10</p>
+            </div>
         </div>
     `;
     busqueda.innerHTML += contenido;
@@ -176,16 +184,18 @@ export function obtenerPropiedades(objeto) {
     const propiedades = document.getElementById("propiedades");
     let texto = `
         <div class="tarjeta">
-            <p>Propiedades de un objeto (Object.keys):</p>
-            <p>
+            <div class="info">
+                <p>Propiedades de un objeto (Object.keys):</p>
+                <p>
     `;
     Object.keys(objeto).forEach(clave => {
         texto += `
-            <b>${clave}</b>
+                <b>${clave}</b>
         `
     });
     texto += `
-            </p>
+                </p>
+            </div>
         </div>
     `;
     propiedades.innerHTML += texto;
@@ -195,14 +205,16 @@ export function objetoAEntradas(objeto) {
     const propiedades = document.getElementById("propiedades");
     let texto = `
         <div class="tarjeta">
-            <p>Objeto convertido a entradas (Object.entries):</p>
+            <div class="info">
+                <p>Objeto convertido a entradas (Object.entries):</p>
     `;
     for(const[clave, valor] of Object.entries(objeto)) {
         texto += `
-            <p>${clave}: <strong>${valor}</strong></p>
+                <p>${clave}: <strong>${valor}</strong></p>
         `;
     }
     texto += `
+            </div>
         </div>
     `;
     propiedades.innerHTML += texto;
