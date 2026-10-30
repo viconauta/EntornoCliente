@@ -96,6 +96,11 @@ span {
     border-radius: 999px;
 }
 
+footer div{
+    text-align: center;
+    padding: 1rem;
+}
+
 @media screen and (max-width: 640px) {
     body {
         padding: 0.75rem;
