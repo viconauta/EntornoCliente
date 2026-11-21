@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
     <title>Club deportivo</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <main>
+        <div>
+            <h1>Formulario Club Deportivo</h1>
+            <h2>Selecciona el servicio al que quieres acceder</h2>
             <ul>
                 <li><button id="socios">Socios</button></li>
                 <li><button id="servicios">Servicios</button></li>
@@ -15,13 +18,8 @@
                 <li><button id="noticias">Noticias</button></li>
                 <li><button id="citas">Citas</button></li>
             </ul>
-        </nav>
-    </header>
-    <main>
-        <div>
-            <h1>Formulario Club Deportivo</h1>
         </div>
-        <div class="socios">
+        <div class="socios oculto">
             <form action="./formulario.php" method="post">
                 <fieldset>
                     <legend>Formulario de socios</legend>
@@ -35,12 +33,12 @@
                     <input type="email" name="email" id="email" placeholder="tu-email@gmail.com" required>
 
                     <label for="edad">Edad</label>
-                    <input type="number" name="edad" id="edad" min="18" max="100">
-
-                    <input type="radio" name="modalidad" value="mensual" require>
+                    <input type="number" name="edad" id="edad" min="18" max="100" step="1">
+                    
                     <label for="modalidad">Modalidad mensual</label>
-                    <input type="radio" name="modalidad" value="anual" require>
+                    <input type="radio" name="modalidad" value="mensual" require>
                     <label for="modalidad">Modalidad anual</label>
+                    <input type="radio" name="modalidad" value="anual" require>
 
                     <label for="contraseña">Contraseña</label>
                     <input type="password" name="contraseña" id="contraseña" minlength="8" maxlength="16" placeholder="contraseña-123#" required>
@@ -54,14 +52,14 @@
                     <label for="foto">Foto de perfil</label>
                     <input type="file" name="foto" id="foto" accept="image/jpeg" required>
 
-                    <input type="checkbox" name="condiciones" id="condiciones" value="aceptadas">
                     <label for="condiciones">Acepta las condiciones de usuario para continuar</label>
+                    <input type="checkbox" name="condiciones" id="condiciones" value="aceptadas">
 
-                    <button type="button">Enviar formulario de socio</button>
+                    <button type="button" class="btn-enviar">Enviar formulario de socio</button>
                 </fieldset>
             </form>
         </div>
-        <div class="servicios">
+        <div class="servicios oculto">
             <form action="./formulario.php" method="post">
                 <fieldset>
                     <legend>Servicios</legend>
@@ -69,10 +67,10 @@
                     <input type="text" id="nombre" name="nombre" minlength="3" maxlength="50" placeholder="Pepito" required>
     
                     <label for="duracion">Edad</label>
-                    <input type="number" name="duracion" id="duracion" min="15">
+                    <input type="number" name="duracion" id="duracion" min="15" step="15">
     
                     <label for="precio">Precio</label>
-                    <input type="number" name="precio" id="precio" min="0" max="9999.99">
+                    <input type="number" name="precio" id="precio" min="0" max="9999.99" step="0.01">
     
                     <label for="categoria">Categoria</label>
                     <select name="categoria" required>
@@ -82,11 +80,11 @@
                         <option value="piscina">Piscina</option>
                     </select>
 
-                    <button type="button">Enviar formulario de servicios</button>
+                    <button type="button" class="btn-enviar">Enviar formulario de servicios</button>
                 </fieldset>
             </form>
         </div>
-        <div class="testimonios">
+        <div class="testimonios oculto">
             <form action="./formulario.php" method="post">
                 <fieldset>
                     <legend>Testimonios</legend>
@@ -96,14 +94,14 @@
                     <label for="testimonio">Testimonio</label>
                     <textarea name="testimonio" id="testimonio" cols="40" rows="4" minlength="10" maxlength="500" placeholder="Escribe aqui tu testimonio" required></textarea>
 
-                    <input type="checkbox" name="autorizacion" id="autorizacion">
                     <label for="autorizacion">Autorizo su publicacion</label>
+                    <input type="checkbox" name="autorizacion" id="autorizacion">
 
-                    <button type="button">Enviar testimonio</button>
+                    <button type="button" class="btn-enviar">Enviar testimonio</button>
                 </fieldset>
             </form>
         </div>
-        <div class="noticias">
+        <div class="noticias oculto">
             <form action="./formulario.php" method="post">
                 <fieldset>
                     <legend>Noticias</legend>
@@ -119,11 +117,11 @@
                     <label for="imagen">Imagen</label>
                     <input type="file" name="imagen" id="imagen" accept="image/jpeg" required>
 
-                    <button type="button">Enviar noticia</button>
+                    <button type="button" class="btn-enviar">Enviar noticia</button>
                 </fieldset>
             </form>
         </div>
-        <div class="citas">
+        <div class="citas oculto">
             <form action="./formulario.php" method="post">
                 <fieldset>
                     <legend>Citas</legend>
@@ -146,13 +144,16 @@
                     <label for="fecha-hora">Fecha y hora</label>
                     <input type="datetime-local" name="fecha-hora" id="fecha-hora" required>
 
-                    <input type="checkbox" name="confirmacion" id="confirmacion" required>
                     <label for="confirmacion">He revisado los datos de la cita</label>
+                    <input type="checkbox" name="confirmacion" id="confirmacion" required>
 
-                    <button type="button">Finalizar</button>
+                    <button type="button" class="btn-enviar">Finalizar</button>
                 </fieldset>
             </form>
         </div>
     </main>
+    <footer>
+        <script type="module" src="./app.js"></script>
+    </footer>
 </body>
 </html>
