@@ -12,15 +12,15 @@
             <h1>Formulario Club Deportivo</h1>
             <h2>Selecciona el servicio al que quieres acceder</h2>
             <ul>
-                <li><button id="socios">Socios</button></li>
-                <li><button id="servicios">Servicios</button></li>
-                <li><button id="testimonios">Testimonios</button></li>
-                <li><button id="noticias">Noticias</button></li>
-                <li><button id="citas">Citas</button></li>
+                <li><button class="btn-socios">Socios</button></li>
+                <li><button class="btn-servicios">Servicios</button></li>
+                <li><button class="btn-testimonios">Testimonios</button></li>
+                <li><button class="btn-noticias">Noticias</button></li>
+                <li><button class="btn-citas">Citas</button></li>
             </ul>
         </div>
         <div class="socios oculto">
-            <form action="./formulario.php" method="post">
+            <form action="./formulario.php" method="post" id="socios">
                 <fieldset>
                     <legend>Formulario de socios</legend>
                     <label for="nombre">Nombre completo</label>
@@ -55,12 +55,13 @@
                     <label for="condiciones">Acepta las condiciones de usuario para continuar</label>
                     <input type="checkbox" name="condiciones" id="condiciones" value="aceptadas">
 
-                    <button type="button" class="btn-enviar">Enviar formulario de socio</button>
+                    <button type="submit" class="btn-enviar">Enviar formulario de socio</button>
                 </fieldset>
             </form>
+            <p id="estado-socios" role="status" aria-live="polite"></p>
         </div>
         <div class="servicios oculto">
-            <form action="./formulario.php" method="post">
+            <form action="./formulario.php" method="post" id="servicios">
                 <fieldset>
                     <legend>Servicios</legend>
                     <label for="nombre">Nombre</label>
@@ -80,12 +81,13 @@
                         <option value="piscina">Piscina</option>
                     </select>
 
-                    <button type="button" class="btn-enviar">Enviar formulario de servicios</button>
+                    <button type="submit" class="btn-enviar">Enviar formulario de servicios</button>
                 </fieldset>
             </form>
+            <p id="estado-servicios" role="status" aria-live="polite"></p>
         </div>
         <div class="testimonios oculto">
-            <form action="./formulario.php" method="post">
+            <form action="./formulario.php" method="post" id="testimonios">
                 <fieldset>
                     <legend>Testimonios</legend>
                     <label for="autor">Autor</label>
@@ -97,12 +99,13 @@
                     <label for="autorizacion">Autorizo su publicacion</label>
                     <input type="checkbox" name="autorizacion" id="autorizacion">
 
-                    <button type="button" class="btn-enviar">Enviar testimonio</button>
+                    <button type="submit" class="btn-enviar">Enviar testimonio</button>
                 </fieldset>
             </form>
+            <p id="estado-testimonios" role="status" aria-live="polite"></p>
         </div>
         <div class="noticias oculto">
-            <form action="./formulario.php" method="post">
+            <form action="./formulario.php" method="post" id="noticias">
                 <fieldset>
                     <legend>Noticias</legend>
                     <label for="titulo">Titulo</label>
@@ -117,12 +120,13 @@
                     <label for="imagen">Imagen</label>
                     <input type="file" name="imagen" id="imagen" accept="image/jpeg" required>
 
-                    <button type="button" class="btn-enviar">Enviar noticia</button>
+                    <button type="submit" class="btn-enviar">Enviar noticia</button>
                 </fieldset>
             </form>
+            <p id="estado-noticias" role="status" aria-live="polite"></p>
         </div>
         <div class="citas oculto">
-            <form action="./formulario.php" method="post">
+            <form action="./formulario.php" method="post" id="citas">
                 <fieldset>
                     <legend>Citas</legend>
                     <label for="socio">Socio</label>
@@ -147,9 +151,10 @@
                     <label for="confirmacion">He revisado los datos de la cita</label>
                     <input type="checkbox" name="confirmacion" id="confirmacion" required>
 
-                    <button type="button" class="btn-enviar">Finalizar</button>
+                    <button type="submit" class="btn-enviar">Finalizar</button>
                 </fieldset>
             </form>
+            <p id="estado-citas" role="status" aria-live="polite"></p>
         </div>
     </main>
     <footer>
