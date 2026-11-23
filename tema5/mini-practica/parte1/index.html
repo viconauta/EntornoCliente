@@ -23,17 +23,18 @@
             <form action="./formulario.php" method="post" id="socios">
                 <fieldset>
                     <legend>Formulario de socios</legend>
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" minlength="4" maxlength="50" placeholder="Pepito Perez Perez" required>
+                    <label for="nombre">Nombre completo (4 a 50 caracteres)</label>
+                    <input type="text" id="nombre" name="nombre" minlength="4" maxlength="50" placeholder="Pepito Perez Perez" aria-describedby="error-nombre" required>
+                    <p id="error-nombre" class="error"></p>
 
                     <label for="usuario">Usuario</label>
-                    <input type="text" name="usuario" id="usuario" minlength="5" maxlength="20" required>
+                    <input type="text" name="usuario" id="usuario" minlength="5" maxlength="20"  aria-describedby="error-usuario" required>
 
                     <label for="email">Correo electronico</label>
-                    <input type="email" name="email" id="email" placeholder="tu-email@gmail.com" required>
+                    <input type="email" name="email" id="email" placeholder="tu-email@gmail.com"  aria-describedby="error-email" required>
 
                     <label for="edad">Edad</label>
-                    <input type="number" name="edad" id="edad" min="18" max="100" step="1">
+                    <input type="number" name="edad" id="edad" min="18" max="100" step="1" aria-describedby="error-edad">
                     
                     <label for="modalidad">Modalidad mensual</label>
                     <input type="radio" name="modalidad" value="mensual" require>
