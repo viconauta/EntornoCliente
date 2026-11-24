@@ -1,165 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Club deportivo</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
 </head>
 <body>
-    <main>
-        <div>
-            <h1>Formulario Club Deportivo</h1>
-            <h2>Selecciona el servicio al que quieres acceder</h2>
-            <ul>
-                <li><button class="btn-socios">Socios</button></li>
-                <li><button class="btn-servicios">Servicios</button></li>
-                <li><button class="btn-testimonios">Testimonios</button></li>
-                <li><button class="btn-noticias">Noticias</button></li>
-                <li><button class="btn-citas">Citas</button></li>
-            </ul>
-        </div>
-        <div class="socios oculto">
-            <form action="./formulario.php" method="post" id="socios">
+<main>
+    <header>
+        <h1>Club deportivo</h1>
+        <h2>Selecciona el formulario que quieres gestionar</h2>
+        <nav aria-label="Formularios">
+            <button type="button" class="btn-formulario" data-target="socios">Socios</button>
+            <button type="button" class="btn-formulario" data-target="servicios">Servicios</button>
+            <button type="button" class="btn-formulario" data-target="testimonios">Testimonios</button>
+            <button type="button" class="btn-formulario" data-target="noticias">Noticias</button>
+            <button type="button" class="btn-formulario" data-target="citas">Citas</button>
+        </nav>
+    </header>
+
+    <section id="socios" class="panel oculto">
+        <form id="form-socios" novalidate>
+            <fieldset>
+                <legend>Formulario de socios</legend>
+
+                <label for="nombre-socio">Nombre completo (4 a 50 caracteres)</label>
+                <input id="nombre-socio" name="nombre" type="text" minlength="4" maxlength="50" autocomplete="name" aria-describedby="error-nombre-socio" required>
+                <p id="error-nombre-socio" class="error"></p>
+
+                <label for="usuario-socio">Usuario (5 a 20 caracteres)</label>
+                <input id="usuario-socio" name="usuario" type="text" minlength="5" maxlength="20" aria-describedby="error-usuario-socio" required>
+                <p id="error-usuario-socio" class="error"></p>
+
+                <label for="email-socio">Correo electronico</label>
+                <input id="email-socio" name="email" type="email" autocomplete="email" aria-describedby="error-email-socio" required>
+                <p id="error-email-socio" class="error"></p>
+
+                <label for="edad-socio">Edad</label>
+                <input id="edad-socio" name="edad" type="number" min="18" max="100" step="1" aria-describedby="error-edad-socio" required>
+                <p id="error-edad-socio" class="error"></p>
+
                 <fieldset>
-                    <legend>Formulario de socios</legend>
-                    <label for="nombre">Nombre completo (4 a 50 caracteres)</label>
-                    <input type="text" id="nombre" name="nombre" minlength="4" maxlength="50" placeholder="Pepito Perez Perez" aria-describedby="error-nombre" required>
-                    <p id="error-nombre" class="error"></p>
-
-                    <label for="usuario">Usuario</label>
-                    <input type="text" name="usuario" id="usuario" minlength="5" maxlength="20"  aria-describedby="error-usuario" required>
-
-                    <label for="email">Correo electronico</label>
-                    <input type="email" name="email" id="email" placeholder="tu-email@gmail.com"  aria-describedby="error-email" required>
-
-                    <label for="edad">Edad</label>
-                    <input type="number" name="edad" id="edad" min="18" max="100" step="1" aria-describedby="error-edad">
-                    
-                    <label for="modalidad">Modalidad mensual</label>
-                    <input type="radio" name="modalidad" value="mensual" require>
-                    <label for="modalidad">Modalidad anual</label>
-                    <input type="radio" name="modalidad" value="anual" require>
-
-                    <label for="contraseña">Contraseña</label>
-                    <input type="password" name="contraseña" id="contraseña" minlength="8" maxlength="16" placeholder="contraseña-123#" required>
-
-                    <label for="confirmacion">Confirma tu contraseña</label>
-                    <input type="password" name="confirmacion" id="confirmacion" minlength="8" maxlength="16" placeholder="contraseña-123#" required>
-
-                    <label for="telefono">Numero de telefono</label>
-                    <input type="tel" name="telefono" id="telefono" placeholder="678253515" required>
-
-                    <label for="foto">Foto de perfil</label>
-                    <input type="file" name="foto" id="foto" accept="image/jpeg" required>
-
-                    <label for="condiciones">Acepta las condiciones de usuario para continuar</label>
-                    <input type="checkbox" name="condiciones" id="condiciones" value="aceptadas">
-
-                    <button type="submit" class="btn-enviar">Enviar formulario de socio</button>
+                    <legend>Modalidad</legend>
+                    <label for="modalidad-mensual"><input id="modalidad-mensual" name="modalidad" type="radio" value="mensual" required> Mensual</label>
+                    <label for="modalidad-anual"><input id="modalidad-anual" name="modalidad" type="radio" value="anual" required> Anual</label>
                 </fieldset>
-            </form>
-            <p id="estado-socios" role="status" aria-live="polite"></p>
-        </div>
-        <div class="servicios oculto">
-            <form action="./formulario.php" method="post" id="servicios">
-                <fieldset>
-                    <legend>Servicios</legend>
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" minlength="3" maxlength="50" placeholder="Pepito" required>
-    
-                    <label for="duracion">Edad</label>
-                    <input type="number" name="duracion" id="duracion" min="15" step="15">
-    
-                    <label for="precio">Precio</label>
-                    <input type="number" name="precio" id="precio" min="0" max="9999.99" step="0.01">
-    
-                    <label for="categoria">Categoria</label>
-                    <select name="categoria" required>
-                        <option value="" selected>Seleccionar categoria</option>
-                        <option value="taquillas">Taquillas</option>
-                        <option value="masaje">Masaje</option>
-                        <option value="piscina">Piscina</option>
-                    </select>
+                <p id="error-modalidad" class="error"></p>
 
-                    <button type="submit" class="btn-enviar">Enviar formulario de servicios</button>
-                </fieldset>
-            </form>
-            <p id="estado-servicios" role="status" aria-live="polite"></p>
-        </div>
-        <div class="testimonios oculto">
-            <form action="./formulario.php" method="post" id="testimonios">
-                <fieldset>
-                    <legend>Testimonios</legend>
-                    <label for="autor">Autor</label>
-                    <input type="text" name="autor" id="autor" minlength="2" maxlength="50" required>
-    
-                    <label for="testimonio">Testimonio</label>
-                    <textarea name="testimonio" id="testimonio" cols="40" rows="4" minlength="10" maxlength="500" placeholder="Escribe aqui tu testimonio" required></textarea>
+                <label for="password-socio">Contraseña (8 a 16 caracteres)</label>
+                <input id="password-socio" name="password" type="password" minlength="8" maxlength="16" autocomplete="new-password" aria-describedby="error-password-socio" required>
+                <p id="error-password-socio" class="error"></p>
 
-                    <label for="autorizacion">Autorizo su publicacion</label>
-                    <input type="checkbox" name="autorizacion" id="autorizacion">
+                <label for="confirmacion-socio">Confirmacion de contraseña</label>
+                <input id="confirmacion-socio" name="confirmacion" type="password" minlength="8" maxlength="16" autocomplete="new-password" aria-describedby="error-confirmacion-socio" required>
+                <p id="error-confirmacion-socio" class="error"></p>
 
-                    <button type="submit" class="btn-enviar">Enviar testimonio</button>
-                </fieldset>
-            </form>
-            <p id="estado-testimonios" role="status" aria-live="polite"></p>
-        </div>
-        <div class="noticias oculto">
-            <form action="./formulario.php" method="post" id="noticias">
-                <fieldset>
-                    <legend>Noticias</legend>
-                    <label for="titulo">Titulo</label>
-                    <input type="text" name="titulo" id="titulo" minlength="3" maxlength="100" required>
-        
-                    <label for="contenido">Contenido</label>
-                    <textarea name="contenido" id="contendio" cols="40" rows="4" minlength="20" maxlength="2000" placeholder="Escribe aqui tu noticia"></textarea>
+                <label for="telefono-socio">Numero de telefono</label>
+                <input id="telefono-socio" name="telefono" type="tel" aria-describedby="error-telefono-socio" required>
+                <p id="error-telefono-socio" class="error"></p>
 
-                    <label for="fecha">Fecha de publicacion</label>
-                    <input type="date" name="fecha" id="fecha" required>
+                <label for="foto-socio">Foto de perfil (JPEG, maximo 5.000.000 bytes)</label>
+                <input id="foto-socio" name="foto" type="file" accept="image/jpeg" aria-describedby="error-foto-socio" required>
+                <p id="error-foto-socio" class="error"></p>
 
-                    <label for="imagen">Imagen</label>
-                    <input type="file" name="imagen" id="imagen" accept="image/jpeg" required>
+                <label for="condiciones-socio"><input id="condiciones-socio" name="condiciones" type="checkbox" value="aceptadas" aria-describedby="error-condiciones-socio" required> Acepto las condiciones</label>
+                <p id="error-condiciones-socio" class="error"></p>
 
-                    <button type="submit" class="btn-enviar">Enviar noticia</button>
-                </fieldset>
-            </form>
-            <p id="estado-noticias" role="status" aria-live="polite"></p>
-        </div>
-        <div class="citas oculto">
-            <form action="./formulario.php" method="post" id="citas">
-                <fieldset>
-                    <legend>Citas</legend>
-                    <label for="socio">Socio</label>
-                    <select name="socio" id="socio">
-                        <option value="" selected>Selecciona un socio</option>
-                        <option value="Pepito Perez Perez">Pepito Perez Perez</option>
-                        <option value="Pablon Pablito Clavo">Pablon Pablito Clavo</option>
-                        <option value="Luisa Perez Perez">Luisa Perez Perez</option>
-                    </select>
+                <button type="submit" class="btn-enviar">Enviar formulario de socio</button>
+            </fieldset>
+        </form>
+        <p id="estado-socios" class="estado" role="status" aria-live="polite"></p>
+    </section>
 
-                    <label for="servicio">Servicio</label>
-                    <select name="servicio" id="servicio">
-                        <option value="" selected>Selecciona un servicio</option>
-                        <option value="Gimnasio">Gimnasio</option>
-                        <option value="piscina">Piscina</option>
-                        <option value="spinnig">Spinning</option>
-                    </select>
+    <section id="servicios" class="panel oculto">
+        <form id="form-servicios" novalidate>
+            <fieldset>
+                <legend>Servicios</legend>
+                <label for="nombre-servicio">Nombre (3 a 50 caracteres)</label>
+                <input id="nombre-servicio" name="nombre" type="text" minlength="3" maxlength="50" aria-describedby="error-nombre-servicio" required>
+                <p id="error-nombre-servicio" class="error"></p>
 
-                    <label for="fecha-hora">Fecha y hora</label>
-                    <input type="datetime-local" name="fecha-hora" id="fecha-hora" required>
+                <label for="duracion-servicio">Duracion en minutos</label>
+                <input id="duracion-servicio" name="duracion" type="number" min="15" step="15" aria-describedby="error-duracion-servicio" required>
+                <p id="error-duracion-servicio" class="error"></p>
 
-                    <label for="confirmacion">He revisado los datos de la cita</label>
-                    <input type="checkbox" name="confirmacion" id="confirmacion" required>
+                <label for="precio-servicio">Precio</label>
+                <input id="precio-servicio" name="precio" type="number" min="0" max="9999.99" step="0.01" aria-describedby="error-precio-servicio" required>
+                <p id="error-precio-servicio" class="error"></p>
 
-                    <button type="submit" class="btn-enviar">Finalizar</button>
-                </fieldset>
-            </form>
-            <p id="estado-citas" role="status" aria-live="polite"></p>
-        </div>
-    </main>
-    <footer>
-        <script type="module" src="./app.js"></script>
-    </footer>
+                <label for="categoria-servicio">Categoria</label>
+                <select id="categoria-servicio" name="categoria" aria-describedby="error-categoria-servicio" required>
+                    <option value="">Seleccionar categoria</option>
+                    <option value="taquillas">Taquillas</option>
+                    <option value="masaje">Masaje</option>
+                    <option value="piscina">Piscina</option>
+                </select>
+                <p id="error-categoria-servicio" class="error"></p>
+
+                <button type="submit" class="btn-enviar">Enviar formulario de servicios</button>
+            </fieldset>
+        </form>
+        <p id="estado-servicios" class="estado" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="testimonios" class="panel oculto">
+        <form id="form-testimonios" novalidate>
+            <fieldset>
+                <legend>Testimonios</legend>
+                <label for="autor-testimonio">Autor (2 a 50 caracteres)</label>
+                <input id="autor-testimonio" name="autor" type="text" minlength="2" maxlength="50" aria-describedby="error-autor-testimonio" required>
+                <p id="error-autor-testimonio" class="error"></p>
+
+                <label for="texto-testimonio">Testimonio (10 a 500 caracteres)</label>
+                <textarea id="texto-testimonio" name="testimonio" minlength="10" maxlength="500" aria-describedby="error-texto-testimonio contador-testimonio" required></textarea>
+                <p id="contador-testimonio" class="contador">0 / 500 caracteres</p>
+                <p id="error-texto-testimonio" class="error"></p>
+
+                <label for="autorizacion-testimonio"><input id="autorizacion-testimonio" name="autorizacion" type="checkbox" value="si"> Autorizo su publicacion</label>
+                <button type="submit" class="btn-enviar">Enviar testimonio</button>
+            </fieldset>
+        </form>
+        <p id="estado-testimonios" class="estado" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="noticias" class="panel oculto">
+        <form id="form-noticias" novalidate>
+            <fieldset>
+                <legend>Noticias</legend>
+                <label for="titulo-noticia">Titulo (3 a 100 caracteres)</label>
+                <input id="titulo-noticia" name="titulo" type="text" minlength="3" maxlength="100" aria-describedby="error-titulo-noticia" required>
+                <p id="error-titulo-noticia" class="error"></p>
+
+                <label for="contenido-noticia">Contenido (20 a 2000 caracteres)</label>
+                <textarea id="contenido-noticia" name="contenido" minlength="20" maxlength="2000" aria-describedby="error-contenido-noticia" required></textarea>
+                <p id="error-contenido-noticia" class="error"></p>
+
+                <label for="fecha-noticia">Fecha de publicacion</label>
+                <input id="fecha-noticia" name="fecha" type="date" aria-describedby="error-fecha-noticia" required>
+                <p id="error-fecha-noticia" class="error"></p>
+
+                <label for="imagen-noticia">Imagen (JPEG, maximo 5.000.000 bytes)</label>
+                <input id="imagen-noticia" name="imagen" type="file" accept="image/jpeg" aria-describedby="error-imagen-noticia" required>
+                <p id="error-imagen-noticia" class="error"></p>
+
+                <button type="submit" class="btn-enviar">Enviar noticia</button>
+            </fieldset>
+        </form>
+        <p id="estado-noticias" class="estado" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="citas" class="panel oculto">
+        <form id="form-citas" novalidate>
+            <fieldset>
+                <legend>Citas</legend>
+                <label for="socio-cita">Socio</label>
+                <select id="socio-cita" name="socio" aria-describedby="error-socio-cita" required>
+                    <option value="">Selecciona un socio</option>
+                    <option value="Pepito Perez Perez">Pepito Perez Perez</option>
+                    <option value="Pablo Pablito Clavo">Pablo Pablito Clavo</option>
+                    <option value="Luisa Perez Perez">Luisa Perez Perez</option>
+                </select>
+                <p id="error-socio-cita" class="error"></p>
+
+                <label for="servicio-cita">Servicio</label>
+                <select id="servicio-cita" name="servicio" aria-describedby="error-servicio-cita" required>
+                    <option value="">Selecciona un servicio</option>
+                    <option value="Gimnasio">Gimnasio</option>
+                    <option value="Piscina">Piscina</option>
+                    <option value="Spinning">Spinning</option>
+                </select>
+                <p id="error-servicio-cita" class="error"></p>
+
+                <label for="fecha-cita">Fecha y hora</label>
+                <input id="fecha-cita" name="fecha-hora" type="datetime-local" aria-describedby="error-fecha-cita" required>
+                <p id="error-fecha-cita" class="error"></p>
+
+                <label for="confirmacion-cita"><input id="confirmacion-cita" name="confirmacion" type="checkbox" value="revisada" aria-describedby="error-confirmacion-cita" required> He revisado los datos de la cita</label>
+                <p id="error-confirmacion-cita" class="error"></p>
+
+                <button type="submit" class="btn-enviar">Finalizar cita</button>
+            </fieldset>
+        </form>
+        <p id="estado-citas" class="estado" role="status" aria-live="polite"></p>
+    </section>
+</main>
 </body>
 </html>

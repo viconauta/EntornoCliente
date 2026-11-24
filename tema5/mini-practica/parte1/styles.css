@@ -204,13 +204,30 @@ input[type="file"]::file-selector-button {
     box-shadow: 0 8px 18px rgba(31, 111, 120, 0.20);
 }
 
-input:invalid:not(:placeholder-shown),
-textarea:invalid:not(:placeholder-shown) {
-    border-color: var(--danger);
-}
-
 .oculto {
     display: none;
+}
+
+.error {
+    min-height: 1.5em;
+    margin: 0;
+    color: #a32121;
+}
+
+.estado {
+    min-height: 1.5em;
+    margin: 12px 0 0;
+    font-weight: 700;
+}
+
+.contador {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+[aria-invalid="true"] {
+    border: 2px solid var(--danger);
 }
 
 @media (min-width: 640px) {

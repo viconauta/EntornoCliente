@@ -1,68 +1,107 @@
-// IMPORTS |
-//=========|
-import { validarSocios } from './funciones.js';
+import { validarCampo } from "./funciones.js";
 
-// OCULTAMOS Y MOSTRAMOS LOS FORMULARIOS |
-//=======================================|
+const botones = document.querySelectorAll(".btn-formulario");
+const paneles = document.querySelectorAll(".panel");
 
-const btnSocios = document.querySelector('.btn-socios');
-btnSocios.addEventListener('click', () => {
-    document.querySelector('.socios').classList.toggle('oculto');
-});
-
-const btnServicios = document.querySelector('.btn-servicios');
-btnServicios.addEventListener('click', () => {
-    document.querySelector('.servicios').classList.toggle('oculto');
-});
-
-const btnTestimonios = document.querySelector('.btn-testimonios');
-btnTestimonios.addEventListener('click', () => {
-    document.querySelector('.testimonios').classList.toggle('oculto');
-});
-
-const btnNoticias = document.querySelector('.btn-noticias');
-btnNoticias.addEventListener('click', () => {
-    document.querySelector('.noticias').classList.toggle('oculto');
-});
-
-const btnCitas = document.querySelector('.btn-citas');
-btnCitas.addEventListener('click', () => {
-    document.querySelector('.citas').classList.toggle('oculto');
-});
-
-// ENVIAMOS EL FORMULARIO AL PRESIONAR ENTER |
-//===========================================|
-
-document.addEventListener('keydown', (event) => {
-    if(event.key === 'Enter') {
-        document.querySelector('.btn-enviar').click();
-    }
-});
-
-// VALIDAMOS EL FORMULARIO DE SOCIOS |
-//===================================|
-
-const formSocios = document.querySelector('#socios');
-const estadoSocios = document.querySelector('.estado-socios');
-const idSocios = ['nombre', 'usuario', 'email', 'edad', 'modalidad', 'contraseña', 'confirmacion', 'telefono', 'foto', 'condiciones'];
-const campoSocios = idSocios.map(id => document.getElementById(id));
-
-formSocios.addEventListener('submit', event => {
-    event.preventDefault();
-    estadoSocios.textContent = '';
-    let primerInvalido = null;
-
-    for(const campo of campoSocios) {
-        const correcto = validarSocios(campoSocios);
-        if(!correcto  && primerInvalido === null) {
-            primerInvalido = campo;
+botones.forEach((boton) => {
+    boton.addEventListener("click", () => {
+        paneles.forEach((panel) => {
+            panel.classList.add("oculto");
+        });
+        const destino = document.getElementById(boton.dataset.target);
+        if (destino) {
+            destino.classList.remove("oculto");
         }
-    }
-    if(primerInvalido) {
-        estadoSocios.textContent = 'Hay errores. Revisa los campos indicados.';
-        primerInvalido.focus();
-        return;
-    }
-    estadoSocios.textContent = 'Datos validos.';
-    //formSocios.submit();
+    });
 });
+
+function configurarFormulario(idForm, idEstado, alValidar) {
+    const form = document.querySelector("#" + idForm);
+    const estado = document.querySelector("#" + idEstado);
+    let intentado = false;
+
+    const campos = form.querySelectorAll("input, select, textarea");
+
+    form.addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        intentado = true;
+        estado.textContent = "";
+
+        let primeroInvalido = null;
+        for (const campo of campos) {
+            const ok = validarCampo(campo);
+            if (!ok && primeroInvalido === null) {
+                primeroInvalido = campo;
+            }
+        }
+
+        if (primeroInvalido) {
+            estado.textContent = "Hay errores. Revisa los campos indicados.";
+            primeroInvalido.focus();
+            return;
+        }
+
+        const datos = new FormData(form);
+        alValidar(datos, estado);
+    });
+
+    for (const campo of campos) {
+        const tipoEvento = (campo.type === "checkbox" || campo.type === "radio" || campo.type === "file" || campo.tagName === "SELECT")
+            ? "change"
+            : "input";
+
+        campo.addEventListener(tipoEvento, () => {
+            estado.textContent = "";
+            if (!intentado) return;
+
+            validarCampo(campo);
+            if (campo.id === "password-socio" || campo.id === "confirmacion-socio") {
+                const confirmacion = document.querySelector("#confirmacion-socio");
+                if (confirmacion) validarCampo(confirmacion);
+            }
+        });
+    }
+}
+
+configurarFormulario("form-socios", "estado-socios", (datos, estado) => {
+    const nombre = (datos.get("nombre") || "").trim();
+    const usuario = (datos.get("usuario") || "").trim();
+    const modalidad = datos.get("modalidad") || "";
+    console.log({ nombre, usuario, modalidad });
+    estado.textContent = "Datos validos. Socio " + nombre + ", usuario " + usuario + ", modalidad " + modalidad + ". Alta simulada.";
+});
+
+configurarFormulario("form-servicios", "estado-servicios", (datos, estado) => {
+    const nombre = (datos.get("nombre") || "").trim();
+    console.log(nombre, datos.get("duracion"), datos.get("precio"));
+    estado.textContent = "Datos validos. Servicio " + nombre + " registrado de forma simulada.";
+});
+
+configurarFormulario("form-testimonios", "estado-testimonios", (datos, estado) => {
+    const autorizado = datos.has("autorizacion");
+    console.log(autorizado);
+    if (autorizado) {
+        estado.textContent = "Datos validos. Testimonio autorizado para publicacion; operacion simulada.";
+    } else {
+        estado.textContent = "Datos validos. Testimonio valido y quedara privado; operacion simulada.";
+    }
+});
+
+configurarFormulario("form-noticias", "estado-noticias", (datos, estado) => {
+    const titulo = (datos.get("titulo") || "").trim();
+    console.log(titulo, datos.get("fecha"));
+    estado.textContent = 'Datos validos. Noticia "' + titulo + '" programada de forma simulada.';
+});
+
+configurarFormulario("form-citas", "estado-citas", (datos, estado) => {
+    console.log(datos.get("socio"), datos.get("servicio"), datos.get("fecha-hora"));
+    estado.textContent = "Datos validos. Cita para " + datos.get("socio") + " con " + datos.get("servicio") + " el " + datos.get("fecha-hora") + ". Operacion simulada.";
+});
+
+const testimonio = document.querySelector("#texto-testimonio");
+const contador = document.querySelector("#contador-testimonio");
+if (testimonio && contador) {
+    testimonio.addEventListener("input", () => {
+        contador.textContent = testimonio.value.length + " / 500 caracteres";
+    });
+}
