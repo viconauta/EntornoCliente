@@ -13,5 +13,4 @@ busqueda.addEventListener('input', () => {
             l.hidden = true;
         }
     });
-    console.log(filtro);
 });
